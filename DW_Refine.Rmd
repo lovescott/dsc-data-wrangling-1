@@ -7,14 +7,15 @@ output: html_document
 knitr::opts_chunk$set
 library(dplyr)
 library(tidyr)
+library(readr)
 ```
 
 ### 0: Load the data in RStudio
 
 Save the data set as a CSV file called refine_original.csv and load it in RStudio into a data frame.
 
-```{r}
-refine <- read.csv("refine_original.csv") %>% tbl_df()
+```{r message=FALSE}
+refine <- read_csv("refine_original.csv")
 refine
 ```
 
@@ -57,7 +58,7 @@ Separate the product code and product number into separate columns i.e. add two 
 
 ```{r}
 refine <- refine %>% 
-  separate("Product.code...number", c("product_code", "product_number"), sep = "-")
+  separate("Product code / number", c("product_code", "product_number"), sep = "-")
 
 refine
 ```
